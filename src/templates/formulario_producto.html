@@ -13,6 +13,11 @@
     <form>
         <div class="form-row">
           <div class="form-group col-md-6">
+            <label for="descripcion">Código</label>
+            <input type="text" class="form-control" id="codigo" placeholder="AAA00000" onblur= "validarCodigo()">
+            <span class="alert alert-danger" role="alert" id= "errorCodigo" style= "display: none;"">Error: Compuesto de 3 letras mayúsculas y números</span>
+          </div>
+          <div class="form-group col-md-6">
             <label for="descripcion">Descripción</label>
             <input type="text" class="form-control" id="descripcion" placeholder="Describa el producto (dato único)">
           </div>
@@ -46,6 +51,23 @@
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
       </form>  
+      <script type="text/javascript">
+        function validarCodigo() {
+          console.log("ingreso a la función validarCodigo"); 
+          let campoCodigo = document.getElementById("codigo");
+          let valorCodigo = campoCodigo.value;
+          let errorCodigo = document.getElementById("errorCodigo");
+          console.log("el valor del código es: " + valorCodigo);
+          var expresionRegular = new RegExp("[A-Z]{3}[0-9]{1,}");
+          if(expresionRegular.test(valorCodigo)) {
+            console.log("El código ingresado es válido"); 
+            errorCodigo.style.display = "none";
+            } else {
+            console.log("El código ingresado no es válido");
+            errorCodigo.style.display = "block";  
+            }
+          }  
+      </script>
       {% endblock %}
 
 

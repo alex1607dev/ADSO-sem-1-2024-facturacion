@@ -25,7 +25,8 @@
     </div>
     <div class="col-md-6">
       <label for="inputPassword" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="password">
+      <input type="password" class="form-control" id="Contraseña" placeholder="Aaaa000#" onblur = "validarContraseña()">
+      <span class="alert alert-danger" role="alert" id= "errorContraseña" style= "display: none;"">Error: La contraseña debe tener minimo 8 caracteres, una mayúscula, una minuscula, un número y un carácter especial</span>
     </div>
     <div class="col-12">
       <label for="inputPassword" class="form-label">Código Empleado</label>
@@ -58,4 +59,21 @@
       <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
   </form>
+  <script type="text/javascript">
+    function validarContraseña() {
+      console.log("ingreso a la función validarContraseña");
+      let campoContraseña = document.getElementById("Contraseña");
+      let valorContraseña = campoContraseña.value;
+      let errorContraseña = document.getElementById("errorContraseña");
+      console.log("el valor del campo de contraseña es: " + valorContraseña);
+      var expresionRegular = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};':\"\\\\|,.<>/?]).{8,20}$");
+      if(expresionRegular.test(valorContraseña)) {
+        console.log("El campo de contraseña ingresado es válido");
+        errorContraseña.style.display = "none";
+      } else {
+        console.log("El campo de contraseña ingresado no es válido");
+        errorContraseña.style.display = "block";
+      }
+    }
+  </script>
   {% endblock %}

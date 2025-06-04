@@ -21,7 +21,8 @@
       </div>
       <div class="col-md-6">
         <label for="inputText" class="form-label">Cédula de Ciudadania</label>
-        <input type="text" class="form-control" id="inputText" placeholder="10750001">
+        <input type="text" class="form-control" id="Cedula" placeholder="0000011111" onblur = "validarCedula()">
+        <span class="alert alert-danger" role="alert" id= "errorCedula" style= "display: none;">Error: La cédula de ciudadania se compone de hasta 10 dígitos</span>
       </div>
       <div class="col-md-6">
         <label for="inputstring" class="form-label">Teléfono</label>
@@ -58,6 +59,23 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
       </div>
     </form>
+    <script type="text/javascript">
+    function validarCedula() {
+      console.log("ingreso a la función validarCedula");
+      let campoCedula = document.getElementById("Cedula");
+      let valorCedula = campoCedula.value;
+      let errorCedula = document.getElementById("errorCedula");
+      console.log("el valor del campo de Cedula es: " + valorCedula);
+      var expresionRegular = new RegExp("^\\d{6,10}$");
+      if(expresionRegular.test(valorCedula)) {
+        console.log("El campo de Cedula ingresado es válido");
+        errorCedula.style.display = "none";
+      } else {
+        console.log("El campo de Cedula ingresado no es válido");
+        errorCedula.style.display = "block";
+      }
+    }
+  </script>
 
 {% endblock %}
 
